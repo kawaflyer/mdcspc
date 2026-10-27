@@ -1,23 +1,12 @@
 """
 mdcspc.dates
 
-<<<<<<< HEAD
 converts all user-supplied dates into ISO format, else forces dd-mm-yyyy day-first to avoid US ambiguity.
-=======
-One shared, UK-friendly rule for turning user-supplied date values into
-timestamps, so input data, phase config, target config and outputs all agree.
->>>>>>> 88400e6ad1d821eca891ba5106d354b78cab90e5
 
 Rule:
 - ISO-looking values (YYYY-MM-DD, optionally with a time) are parsed as ISO.
 - Everything else is parsed day-first (dd/mm/yyyy).
 
-<<<<<<< HEAD
-
-=======
-Both halves matter: pandas' default is month-first, and applying
-dayfirst=True to ISO strings swaps day and month on pandas 3.
->>>>>>> 88400e6ad1d821eca891ba5106d354b78cab90e5
 """
 
 from __future__ import annotations
@@ -30,16 +19,6 @@ ISO_DATE_PATTERN = r"^\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)?
 
 
 def parse_uk_dates(values: Any) -> pd.Series:
-<<<<<<< HEAD
-
-=======
-    """
-    Parse date values using the ISO-or-day-first rule, normalised to midnight.
-
-    Accepts a Series or list-like of strings, dates or timestamps. Missing or
-    blank values become NaT. Unparseable values raise ValueError.
-    """
->>>>>>> 88400e6ad1d821eca891ba5106d354b78cab90e5
     series = values if isinstance(values, pd.Series) else pd.Series(values)
 
     if pd.api.types.is_datetime64_any_dtype(series):
